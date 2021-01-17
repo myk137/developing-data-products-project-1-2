@@ -1,0 +1,23 @@
+---
+title: "January 11, 2021"
+output: html_document
+---
+
+```{r, echo=FALSE, message=FALSE}
+library(leaflet)
+set.seed(2021-01-11)
+df <- data.frame(lat = c(27.1751, 28.5933, 17.3616),
+                 lng = c(78.0421, 77.2507, 78.4747),
+                 col = c("red", "blue", "green"))
+
+medieval_sites <- c(
+        "<a href='https://www.tajmahal.gov.in/'>Taj Mahal</a>",
+        "<a href='https://en.wikipedia.org/wiki/Humayun%27s_Tomb'>Humayun's Tomb</a>",
+        "<a href='https://en.wikipedia.org/wiki/Charminar'>Charminar</a>"
+)
+
+df %>% leaflet() %>%
+        addTiles() %>%
+        addCircleMarkers(color=df$col, popup = medieval_sites) %>%
+        addLegend(labels=c("Taj Mahal","Humayun's Tomb","Charminar"), colors=c("red", "blue", "green"))
+```
